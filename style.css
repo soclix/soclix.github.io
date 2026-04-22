@@ -335,3 +335,21 @@ footer {
 .text-glow { text-shadow: 0 0 10px var(--primary); }
 .blue-glow { text-shadow: 0 0 10px var(--secondary); }
 .glass-panel { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--border); }
+/* --- SECTION 11. VIDEO LOGO CLASS --- */
+.video-logo {
+    width: 60px;       /* Fixed: size on desktop */
+    height: 60px;      /* Fixed: height on desktop */
+    object-fit: contain; /* Prevents stretching */
+    margin-bottom: 25px; /* Matches other icon spacing */
+    filter: drop-shadow(0 0 10px rgba(0, 204, 255, 0.2)); /* Default blue glow */
+    transition: all 0.6s ease; /* Smooth size change for mobile */
+}
+
+/* On mobile, make the logo a bit smaller */
+@media (max-width: 768px) {
+    .video-logo {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 20px;
+    }
+}
