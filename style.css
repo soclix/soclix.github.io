@@ -343,3 +343,33 @@ rgba(255, 0, 255, 0.4), 0 0 50px rgba(0, 204, 255, 0.2);
     margin-right: 15px;
     filter: drop-shadow(0 0 5px rgba(0, 204, 255, 0.5));
 }
+/* Force icons to be able to rotate */
+.service-card i, .service-card img {
+    display: inline-block !important; 
+    transition: transform 0.7s ease-in-out !important;
+}
+
+/* The rotation trigger */
+.service-card:hover i, .service-card:hover img {
+    transform: rotateY(360deg) scale(1.2) !important;
+    color: #ff00ff !important;
+    filter: drop-shadow(0 0 15px #ff00ff) !important;
+}
+/* This targets the container of your email/phone */
+.contact-info div, .contact-info p, .contact-info span, .contact-info a {
+    transition: all 0.4s ease !important;
+    cursor: pointer;
+}
+
+/* The Glow Effect when touched/hovered */
+.contact-info div:hover, .contact-info p:hover, .contact-info span:hover, .contact-info a:hover {
+    color: #fff !important;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff !important;
+    transform: translateX(10px) !important;
+}
+
+/* Also make the small icons next to them glow */
+.contact-info i:hover {
+    filter: drop-shadow(0 0 10px #00ccff) !important;
+    color: #00ccff !important;
+}
