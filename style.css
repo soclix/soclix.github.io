@@ -1,180 +1,256 @@
-/* --- SOCLIX ORIGINAL VIBE (FIXED & RESTORED) --- */
+
+/* --- 1. GLOBAL & FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,800;0,900;1,800;1,900&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #0a0a0a; /* Original deep dark */
-    color: #fff;
-    overflow-x: hidden;
-    line-height: 1.6;
+  margin: 0;
+  min-height: 100vh;
+  background: #0b0221 url('background.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
 
-/* --- THE SMOKY BACKGROUND (RESTORED) --- */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 50% 50%, #1a0b2e 0%, #0a0a0a 100%);
-    z-index: -1;
-}
-
-/* --- ORIGINAL GLASS NAVIGATION --- */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 10%;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+/* --- 2. HERO SECTION --- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: #ff00ff;
-    text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+  width: 300px;
+  height: auto;
+  margin-bottom: 30px;
 }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 30px;
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to right, #ffffff, #ffabd4, #9d87ff, #93e8ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 14px;
-    transition: 0.3s;
-}
+.sub-heading { font-size: 1.8rem; font-weight: 800; margin: 0; }
+.gradient-text { font-size: 4.5rem; font-weight: 900; margin: 0; line-height: 1.1; }
 
-/* --- ORIGINAL SERVICE CARDS (SMOKY GLASS) --- */
-#services {
-    padding: 100px 10%;
+.tagline {
+  background: none !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-top: 20px;
+  font-style: normal;
 }
+/* --- FIXED SERVICES SECTION --- */
+#services { padding: 80px 20px; text-align: center; }
 
 .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .service-card {
-    background: rgba(255, 255, 255, 0.05); /* Original Smoky Look */
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 40px 30px;
-    border-radius: 20px;
-    text-align: center;
-    transition: all 0.4s ease;
-    text-decoration: none;
-    display: block;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 20px;
+  text-decoration: none;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* FIXED ROTATION FOR LOGO AND ICONS */
-.service-card i, .service-card .video-logo {
-    font-size: 50px;
-    margin-bottom: 20px;
-    color: #00ccff; /* Original Blue Icon color */
-    display: inline-block !important; /* Forces the spin to work */
-    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+/* This fixes the missing/invisible icons */
+.icon-box svg {
+  width: 50px;
+  height: 50px;
+  stroke: #ffabd4; /* Gives them the pink glow color */
+  margin-bottom: 20px;
 }
 
-.service-card:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #ff00ff;
-    box-shadow: 0 10px 30px rgba(255, 0, 255, 0.2);
+.service-card h3 {
+  color: #9d87ff; /* Elite Purple/Blue text */
+  font-size: 1.5rem;
+  margin: 10px 0;
 }
 
-/* THE 3D SPIN (WORKS ON BOTH ICON AND IMAGE) */
-.service-card:hover i, .service-card:hover .video-logo {
-    transform: rotateY(360deg) scale(1.1) !important;
-    color: #ff00ff !important;
-    filter: drop-shadow(0 0 10px #ff00ff);
+.service-card p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
-/* --- VIDEO LOGO FIX --- */
-.video-logo {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
+/* --- FIXED CONTACT SECTION --- */
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-/* --- CONTACT SECTION (NEON GLOW RESTORED) --- */
-#contact {
-    padding: 100px 10%;
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.contact-info p, .contact-info span, .contact-detail {
-    margin-bottom: 20px;
-    font-size: 18px;
-    transition: 0.3s;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.info-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Spaces out the icon and text */
 }
 
-/* THE NEON TEXT GLOW */
-.contact-info p:hover, .contact-detail:hover span, .contact-detail:hover p {
-    color: #fff !important;
-    text-shadow: 0 0 8px #fff, 0 0 15px #ff00ff, 0 0 30px #ff00ff !important;
-    transform: translateX(10px);
+.info-icon {
+  font-size: 2rem; /* Makes the emoji/icon look better */
 }
 
-.contact-info i {
-    color: #00ccff;
-    transition: 0.3s;
+.info-text h4 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.1rem;
 }
 
-.contact-detail:hover i {
-    color: #ff00ff !important;
-    filter: drop-shadow(0 0 10px #ff00ff);
+.info-text p {
+  margin: 5px 0 0;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-/* --- ORIGINAL BUTTONS --- */
-.submit-btn {
-    background: linear-gradient(45deg, #ff00ff, #00ccff);
-    color: #fff;
-    padding: 15px 30px;
-    border: none;
+.contact-form {
+  flex: 1;
+  min-width: 350px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* All inputs including dropdown */
+.contact-form input, 
+.contact-form select, 
+.contact-form textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(157, 135, 255, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+  outline: none;
+  width: 100%;
+  transition: 0.3s ease;
+}
+
+.contact-form input:focus, 
+.contact-form select:focus, 
+.contact-form textarea:focus {
+  border-color: #ffabd4;
+  box-shadow: 0 0 15px rgba(255, 171, 212, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.contact-form select option { background: #0b0221; color: white; }
+
+.contact-form button {
+  background: linear-gradient(to right, #ffabd4, #9d87ff);
+  border: none;
+  padding: 15px;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(157, 135, 255, 0.5); }
+
+/* --- 5. THANK YOU BOX --- */
+.thank-you-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(11, 2, 33, 0.9);
+  backdrop-filter: blur(15px);
+  
+  display: none; /* <--- ADD THIS LINE TO HIDE IT AT START */
+  
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.thank-you-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #ffabd4;
+  padding: 40px;
+  border-radius: 25px;
+  text-align: center;
+  max-width: 400px;
+}
+
+.thank-you-card button {
+  margin-top: 20px;
+  background: linear-gradient(to right, #ffabd4, #9d87ff);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* --- 6. FOOTER --- */
+#footer { padding: 80px 20px; text-align: center; }
+
+.feedback-container {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(157, 135, 255, 0.2);
+  border-radius: 25px;
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+}
+.home-btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: linear-gradient(to right, #ffabd4, #9d87ff);
+    color: white;
+    padding: 12px 30px;
     border-radius: 50px;
+    text-decoration: none;
     font-weight: bold;
-    cursor: pointer;
     transition: 0.3s;
 }
-
-.submit-btn:hover {
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+.home-btn:hover {
     transform: scale(1.05);
-}
-
-/* --- FORM INPUTS (SMOKY GLASS) --- */
-input, textarea {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    color: #fff;
-    outline: none;
-}
-
-input:focus, textarea:focus {
-    border-color: #00ccff;
+    box-shadow: 0 0 20px rgba(157, 135, 255, 0.4);
 }
