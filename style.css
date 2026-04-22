@@ -1,4 +1,3 @@
-
 /* --- 1. GLOBAL & FONTS --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,800;0,900;1,800;1,900&display=swap');
 
@@ -253,4 +252,135 @@ body {
 .home-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(157, 135, 255, 0.4);
+}
+/* --- SERVICE CARD INTERACTION --- */
+
+/* 1. The Card Lift & Glass Glow */
+.service-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.service-card:hover {
+    transform: translateY(-12px) !important; /* Moves Up */
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: #ff00ff !important; /* Pink Glow Border */
+    box-shadow: 0 15px 30px rgba(255, 0, 255, 0.3) !important; /* Glow Effect */
+}
+
+/* 2. The Icon/Logo 3D Rotation */
+.service-card i, 
+.service-card img, 
+.service-card .video-logo {
+    display: inline-block !important; /* Required for rotation */
+    transition: transform 0.8s ease-in-out !important;
+}
+
+.service-card:hover i, 
+.service-card:hover img, 
+.service-card:hover .video-logo {
+    transform: rotateY(360deg) scale(1.1) !important; /* Full 3D Spin */
+    color: #ff00ff !important;
+    filter: drop-shadow(0 0 10px #ff00ff) !important;
+}
+/* --- THE CONTACT BOXES --- */
+.contact-item {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05); /* THIS CREATES THE BOX VISUALLY */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* THE ENTIRE BOX GLOWS (NO TEXT GLOW) */
+.contact-item:hover {
+    background: rgba(255, 0, 255, 0.1) !important; /* Tint the box */
+    border: 1px solid #ff00ff !important; /* Pink Glow Border */
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4) !important; /* The Outer Glow */
+    transform: translateX(10px);
+}
+
+/* Ensure text inside DOES NOT glow */
+.contact-item h4, .contact-item p {
+    text-shadow: none !important; 
+    margin: 0;
+}
+
+.contact-item i {
+    margin-right: 20px;
+    font-size: 20px;
+    color: #ff00ff; /* Icon color */
+}
+/* Color the icons to match the smoky dark background */
+.service-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: #888888; /* Muted silver - matches your background */
+    transition: all 0.4s ease !important;
+    display: inline-block !important;
+}
+
+/* On hover: 15° Tilt & Brighten (No glow, no rotation) */
+.service-card:hover .service-icon {
+    color: #ffffff; /* Turns bright white, not neon */
+    transform: rotate(15deg) scale(1.1) !important;
+}
+
+/* Ensure the layout remains 3 top, 1 bottom */
+.top-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 0 10%;
+    margin-bottom: 30px;
+}
+
+.bottom-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 0 10%;
+}
+
+.video-card {
+    max-width: 400px;
+    width: 100%;
+}
+/* --- NEON UNDERLINE FOR BOTH SECTIONS --- */
+
+.underlined-title, #contact h2 {
+    text-align: center;
+    position: relative;
+    margin-bottom: 60px; 
+    font-size: 36px;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+/* Creating the Neon Line under BOTH */
+.underlined-title::after, #contact h2::after {
+    content: "";
+    position: absolute;
+    bottom: -15px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    width: 100px; /* Slightly wider line */
+    height: 4px; 
+    background: #ff00ff; 
+    border-radius: 10px;
+    
+    /* Stronger Neon Glow */
+    box-shadow: 
+        0 0 10px #ff00ff,
+        0 0 20px #ff00ff,
+        0 0 35px #ff00ff !important;
+    
+    /* Ensure the line actually shows up */
+    display: block !important;
+    z-index: 10;
 }
