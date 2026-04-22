@@ -254,25 +254,50 @@ body {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(157, 135, 255, 0.4);
 }
-/* Service Card Glow & Lift */
-.service-card {
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.service-card:hover {
-    transform: translateY(-10px); /* Lifts the card */
-    box-shadow: 0 0 25px rgba(255, 0, 255, 0.4), 0 0 50px rgba(0, 204, 255, 0.2);
+rgba(255, 0, 255, 0.4), 0 0 50px rgba(0, 204, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.5);
 }
+/* --- ELITE SERVICE ANIMATIONS --- */
 
-/* Icon Rotation */
-.service-card i {
-    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.service-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Make the Card Lift and Glow on Hover */
+.service-card:hover {
+    transform: translateY(-12px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ff00ff;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.3), 
+                inset 0 0 15px rgba(255, 0, 255, 0.1);
+}
+
+/* Make the Icon Rotate 360 Degrees */
 .service-card:hover i {
-    transform: rotateY(360deg); /* Full spin on hover */
-    color: #ff00ff; /* Changes color to glow pink */
+    transform: rotateY(360deg);
+    color: #ff00ff;
+    filter: drop-shadow(0 0 10px #ff00ff);
 }
+/* --- GLOWING CONTACT BUTTON --- */
+
+.contact-form button {
+    background: linear-gradient(45deg, #ff00ff, #00ccff);
+    border: none;
+    transition: 0.3s;
+    animation: buttonPulse 2s infinite;
+}
+
+.contact-form button:hover {
+    box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ccff;
+    transform: scale(1.05);
+}
+
+@keyframes buttonPulse {
+    0% { box-shadow: 0 0 5px rgba(255, 0, 255, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(255, 0, 255, 0.7); }
+    100% { box-shadow: 0 0 5px rgba(255, 0, 255, 0.4); }
+}
+
+    transform: rotateY(360deg); /* Full spin on hover */
+    color: #ff00ff; /* Changes color to glow pink */}
