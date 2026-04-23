@@ -316,72 +316,327 @@ body {
     font-size: 20px;
     color: #ff00ff; /* Icon color */
 }
-/* Color the icons to match the smoky dark background */
+/* Clean Floating Icons */
 .service-icon {
-    font-size: 50px;
-    margin-bottom: 20px;
-    color: #888888; /* Muted silver - matches your background */
-    transition: all 0.4s ease !important;
-    display: inline-block !important;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* On hover: 15° Tilt & Brighten (No glow, no rotation) */
+.service-icon svg {
+    width: 100%;
+    height: 100%;
+    /* This color matches your smoky purple theme */
+    stroke: #9d87ff; 
+    /* Soft initial glow */
+    filter: drop-shadow(0 0 8px rgba(157, 135, 255, 0.3));
+    transition: all 0.5s ease;
+}
+
+/* Hover Interaction */
 .service-card:hover .service-icon {
-    color: #ffffff; /* Turns bright white, not neon */
-    transform: rotate(15deg) scale(1.1) !important;
+    transform: translateY(-5px) scale(1.1);
 }
 
-/* Ensure the layout remains 3 top, 1 bottom */
+.service-card:hover .service-icon svg {
+    /* Transitions to your Pink Accent on hover */
+    stroke: #ffabd4; 
+    /* Intense Neon Glow */
+    filter: drop-shadow(0 0 15px #ffabd4);
+}
+
+/* Make sure the card itself doesn't have too much padding now */
+.service-card {
+    padding: 30px 20px !important;
+}
+/* --- LAYOUT FIX --- */
 .top-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Forces exactly 3 columns */
     gap: 30px;
-    padding: 0 10%;
-    margin-bottom: 30px;
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
 }
 
 .bottom-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    padding: 0 10%;
+    display: flex;
+    justify-content: center; /* Centers the 4th card */
 }
 
-.video-card {
-    max-width: 400px;
+.bottom-row .service-card {
+    width: 31%; /* Matches width of top row cards */
+}
+
+/* --- UNIFORM SIZE & TILT --- */
+.service-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: 0.4s ease;
+}
+
+.service-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    transition: transform 0.4s ease;
+}
+
+.service-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: #9d87ff; /* Matching your smoky purple */
+    transition: 0.4s ease;
+}
+
+/* --- HOVER EFFECTS --- */
+.service-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #ffabd4;
+    transform: translateY(-10px);
+}
+
+.service-card:hover .service-icon {
+    /* 15 degree clockwise tilt */
+    transform: rotate(15deg);
+}
+
+.service-card:hover .service-icon svg {
+    stroke: #ffabd4; /* Glowy pink */
+    filter: drop-shadow(0 0 8px #ffabd4);
+}
+.iti { width: 100%; margin-bottom: 15px; } /* Ensures full width */
+.iti__country-list { background: #0b0221; border: 1px solid #ffabd4; color: white; }
+.iti__country { padding: 10px; }
+.iti__country:hover { background: rgba(255, 171, 212, 0.2); }
+
+.input-group { margin-bottom: 15px; text-align: left; }
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.feedback-form input, .feedback-form textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(157, 135, 255, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
     width: 100%;
 }
-/* --- NEON UNDERLINE FOR BOTH SECTIONS --- */
 
-.underlined-title, #contact h2 {
-    text-align: center;
-    position: relative;
-    margin-bottom: 60px; 
-    font-size: 36px;
-    letter-spacing: 3px;
-    color: #ffffff;
-    text-transform: uppercase;
+.feedback-form button {
+    background: linear-gradient(to right, #ffabd4, #9d87ff);
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-/* Creating the Neon Line under BOTH */
-.underlined-title::after, #contact h2::after {
-    content: "";
-    position: absolute;
-    bottom: -15px; 
+.feedback-form button:hover {
+    box-shadow: 0 0 15px #9d87ff;
+    transform: translateY(-2px);
+}
+.thank-you-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(11, 2, 33, 0.85); /* Dark smoky tint */
+    backdrop-filter: blur(12px); /* Glass effect */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.thank-you-card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid #ffabd4;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(157, 135, 255, 0.2);
+}
+/* --- SMOKY GLASS CAPSULE --- */
+.capsule-nav {
+    position: fixed;
+    top: 25px;
     left: 50%;
-    transform: translateX(-50%); 
-    width: 100px; /* Slightly wider line */
-    height: 4px; 
-    background: #ff00ff; 
-    border-radius: 10px;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 800px;
+    /* Smoky Dark Glass */
+    background: rgba(11, 2, 33, 0.7); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     
-    /* Stronger Neon Glow */
-    box-shadow: 
-        0 0 10px #ff00ff,
-        0 0 20px #ff00ff,
-        0 0 35px #ff00ff !important;
+    /* Subtle Glowing Border */
+    border: 1px solid rgba(157, 135, 255, 0.2);
+    border-radius: 100px;
+    padding: 8px 12px;
+    z-index: 10000;
+    transition: transform 0.4s ease, opacity 0.4s ease, border-color 0.3s;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.nav-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-small-logo {
+    height: 28px;
+    width: auto;
+}
+
+.nav-brand {
+    font-weight: 800;
+    color: #ffffff; /* White text for dark BG */
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffabd4; /* Glowy Pink on hover */
+}
+
+/* The Action Button */
+.nav-btn {
+    background: linear-gradient(to right, #ffabd4, #9d87ff);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    box-shadow: 0 0 15px rgba(255, 171, 212, 0.5);
+    transform: scale(1.05);
+}
+
+/* Scroll Toggle */
+.nav-hidden {
+    transform: translate(-50%, -150%);
+    opacity: 0;
+}
+/* --- RESPONSIVE DESIGN (Mobile & Tablet) --- */
+
+@media (max-width: 768px) {
+    /* Navbar Adjustments */
+    .capsule-nav {
+        width: 95%;
+        top: 15px;
+        padding: 5px 10px;
+    }
+
+    .nav-brand {
+        display: none; /* Hides text logo on tiny screens to save space */
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 0.75rem;
+    }
+
+    .nav-btn {
+        padding: 8px 15px;
+        font-size: 0.7rem;
+    }
+
+    /* Hero Text Scaling */
+    .gradient-text {
+        font-size: 2.8rem; /* Smaller text so it doesn't wrap weirdly */
+    }
+
+    .sub-heading {
+        font-size: 1.2rem;
+    }
+
+    /* Services Grid Fix */
+    .top-row {
+        grid-template-columns: 1fr; /* Stack cards vertically on mobile */
+        padding: 0 20px;
+    }
+
+    .bottom-row .service-card {
+        width: 100%; /* Make the 4th card full width like the others */
+        max-width: none;
+        padding: 0 20px;
+    }
+
+    .service-card {
+        min-height: auto; /* Let height be determined by content */
+        margin-bottom: 20px;
+    }
+
+    /* Contact Section */
+    .contact-container {
+        flex-direction: column; /* Stack Info and Form */
+        align-items: center;
+    }
+
+    .contact-info, .contact-form {
+        width: 100%;
+        min-width: unset;
+    }
+
+    /* Footer Feedback */
+    .feedback-container {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+/* Fix for very small phones (iPhone SE size) */
+@media (max-width: 480px) {
+    .gradient-text {
+        font-size: 2.2rem;
+    }
     
-    /* Ensure the line actually shows up */
-    display: block !important;
-    z-index: 10;
+    .nav-links {
+        gap: 10px;
+    }
 }
