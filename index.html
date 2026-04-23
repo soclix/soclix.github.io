@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>𝕾𝖔𝖈𝖑𝖎𝖝 | Digital Agency</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="capsule-nav" id="mainNav">
+    <div class="nav-content">
+        <div class="nav-logo-section">
+            <img src="logo.png" alt="Soclix Logo" class="nav-small-logo">
+            <span class="nav-brand">SOCLIX</span>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#footer">Feedback</a></li>
+        </ul>
+
+        <a href="#contact" class="nav-btn">Start Project</a>
+    </div>
+</nav>
 
     <section class="hero">
         <img src="logo.png" class="logo" alt="Soclix Logo">
@@ -23,25 +41,25 @@
     
     <div class="services-grid top-row">
         <div class="service-card">
-            <div class="service-icon">💻</div>
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
             <h3>Web Development</h3>
             <p>High-end responsive websites.</p>
         </div>
         <div class="service-card">
-            <div class="service-icon">📱</div>
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></div>
             <h3>Social Media Handling</h3>
             <p>Growth and brand management.</p>
         </div>
         <div class="service-card">
-            <div class="service-icon">⚡</div>
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
             <h3>4K Clips</h3>
             <p>Ultra HD high-quality footage.</p>
         </div>
     </div>
 
     <div class="services-grid bottom-row">
-        <div class="service-card video-card">
-            <div class="service-icon">🎬</div>
+        <div class="service-card">
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg></div>
             <h3>Video Editing</h3>
             <p>Professional cinematic cuts.</p>
         </div>
@@ -80,8 +98,10 @@
     <input type="hidden" name="access_key" value="0b75632a-6553-4bc0-9b8e-989417baa091">
     
     <input type="text" name="name" placeholder="Full Name *" required>
-    <input type="email" name="email" placeholder="Email Address *" required>
-    <input type="tel" name="phone" placeholder="Phone Number">
+    <input type="email" id="email" name="email" placeholder="Email Address *" required>
+    <span id="email-error" style="color: #ffabd4; font-size: 0.8rem; display: none;">Invalid or fake email!</span>
+    <input type="tel" id="phone" name="phone">
+    <span id="phone-error" style="color: #ffabd4; font-size: 0.8rem; display: none;">Invalid number!</span>
     
     <select name="service" required>
         <option value="" disabled selected>Service Interested</option>
@@ -106,18 +126,32 @@
 </div>
 
     <footer id="footer">
-        <div class="feedback-container">
-            <h3>Client Feedback</h3>
-            <p>How was your experience with Soclix?</p>
-            <div class="feedback-form">
-                <textarea placeholder="Share your thoughts..." rows="3"></textarea>
-                <button type="button">Submit Feedback</button>
-            </div>
+    <div class="feedback-container">
+        <h3>Client Feedback</h3>
+        <p>How was your experience with Soclix?</p>
+        
+        <form action="https://api.web3forms.com/submit" method="POST" id="feedbackForm" class="feedback-form">
+            <input type="hidden" name="access_key" value="0b75632a-6553-4bc0-9b8e-989417baa091">
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+            <input type="text" name="name" placeholder="Your Name" required>
+            <textarea name="message" placeholder="Share your thoughts..." rows="3" required></textarea>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <div id="feedbackSuccess" class="thank-you-overlay" style="display: none;">
+        <div class="thank-you-card">
+            <h3>✨ Feedback Sent!</h3>
+            <p>Thanks for helping Soclix level up. We appreciate you!</p>
+            <button class="home-btn" onclick="closeFeedback()">Back to Site</button>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Soclix. Founded By Mohammad Yehya. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Soclix. Founded By Mohammad Yehya. All rights reserved.</p>
+    </div>
+</footer>
 
     <script src="script.js"></script>
 
