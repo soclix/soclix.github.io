@@ -166,7 +166,12 @@
             <form class="auth-form" onsubmit="handleLogin(event)">
                 <input type="text" id="logUser" placeholder="Username or Email" required>
                 <input type="password" id="logPass" placeholder="Password" required>
-                <p id="errorMsg" class="error-text">No account found. Sign in to continue.</p>
+                <p id="errorMsg" class="error-text">
+    No account found. 
+    <span onclick="switchTab('signup')" style="color: #ffabd4; cursor: pointer; text-decoration: underline;">
+        Sign in to continue.
+    </span>
+</p>
                 <button type="submit" class="submit-btn">Login</button>
             </form>
         </div>

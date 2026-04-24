@@ -247,18 +247,41 @@ function loginWithApple() {
         .catch((error) => {
             alert("Apple Login Failed: " + error.message);
         });
-}auth.onAuthStateChanged((user) => {
+}// --- AUTO-UPDATE BUTTON (Login vs Logout) ---
+auth.onAuthStateChanged((user) => {
     const authBtn = document.querySelector('.auth-trigger-btn');
+    
     if (user) {
-        // Change button to show their Google/Apple profile pic if available
-        const photo = user.photoURL || 'default-avatar.png'; 
-        authBtn.innerHTML = `<img src="${photo}" style="width:20px; border-radius:50%; margin-right:8px;"> ${user.displayName || 'Account'}`;
+        // User is LOGGED IN
+        authBtn.innerText = "Logout";
+        authBtn.onclick = handleLogout; // Change the click action to Logout
         
-        // Optional: Update the Sign-In box to show their current info
-        if(document.getElementById('pfp-display')) {
-            document.getElementById('pfp-display').style.backgroundImage = `url(${photo})`;
-        }
+        // Optional: Style the logout button differently (e.g., Red-ish)
+        authBtn.style.borderColor = "rgba(255, 77, 77, 0.5)";
     } else {
+        // User is LOGGED OUT
         authBtn.innerText = "Login / Sign In";
+        authBtn.onclick = openAuthModal; // Change click action back to Open Modal
+        authBtn.style.borderColor = "rgba(157, 135, 255, 0.3)";
     }
 });
+
+// --- LOGOUT FUNCTION ---
+function handleLogout() {
+    auth.signOut().then(() => {
+        alert("Logged out successfully!");
+    }).catch((error) => {
+        console.error("Logout Error:", error);
+    });
+}function switchTab(type) {
+    const isLogin = type === 'login';
+    document.getElementById('loginSection').style.display = isLogin ? 'block' : 'none';
+    document.getElementById('signupSection').style.display = isLogin ? 'none' : 'block';
+    
+    // Update tab highlight
+    document.getElementById('loginTab').classList.toggle('active', isLogin);
+    document.getElementById('signupTab').classList.toggle('active', !isLogin);
+    
+    // Hide the error message when switching tabs
+    document.getElementById('errorMsg').style.display = 'none';
+}
