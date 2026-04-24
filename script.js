@@ -284,4 +284,47 @@ function handleLogout() {
     
     // Hide the error message when switching tabs
     document.getElementById('errorMsg').style.display = 'none';
+}// This function MUST be global (not inside another function)
+function switchTab(type) {
+    console.log("Switching to:", type);
+    const loginSection = document.getElementById('loginSection');
+    const signupSection = document.getElementById('signupSection');
+    const loginTab = document.getElementById('loginTab');
+    const signupTab = document.getElementById('signupTab');
+
+    if (type === 'login') {
+        loginSection.style.display = 'block';
+        signupSection.style.display = 'none';
+        loginTab.classList.add('active');
+        signupTab.classList.remove('active');
+    } else {
+        loginSection.style.display = 'none';
+        signupSection.style.display = 'block';
+        loginTab.classList.remove('active');
+        signupTab.classList.add('active');
+    }
+    // Hide error when switching
+    document.getElementById('errorMsg').style.display = 'none';
 }
+
+// THE AUTO-LOGOUT BUTTON LOGIC
+auth.onAuthStateChanged((user) => {
+    const authBtn = document.querySelector('.auth-trigger-btn');
+    console.log("Auth State Changed. User is:", user ? "Logged In" : "Logged Out");
+
+    if (user) {
+        // Change button to Logout mode
+        authBtn.innerText = "Logout";
+        authBtn.onclick = function() {
+            auth.signOut().then(() => {
+                location.reload(); // Refresh to clear everything
+            });
+        };
+        authBtn.style.background = "rgba(255, 77, 77, 0.1)"; // Slight red tint
+    } else {
+        // Reset to Login mode
+        authBtn.innerText = "Login / Sign In";
+        authBtn.onclick = openAuthModal;
+        authBtn.style.background = "rgba(255, 255, 255, 0.05)";
+    }
+});
