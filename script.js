@@ -328,30 +328,3 @@ auth.onAuthStateChanged((user) => {
         authBtn.style.background = "rgba(255, 255, 255, 0.05)";
     }
 });
-// --- THE MASTER AUTH LISTENER ---
-auth.onAuthStateChanged((user) => {
-    const authBtn = document.querySelector('.auth-trigger-btn');
-    console.log("Status Check: ", user ? "User is here" : "No user");
-
-    if (user) {
-        // 1. Change Text
-        authBtn.innerText = "Logout";
-        
-        // 2. Change Action (Remove opening modal, add Logout)
-        authBtn.onclick = function(e) {
-            e.preventDefault();
-            auth.signOut().then(() => {
-                console.log("Logged out!");
-                window.location.reload(); // This forces the site to show "Login" again
-            });
-        };
-
-        // 3. Optional: Make it look like a Logout button (red glow)
-        authBtn.style.border = "1.5px solid rgba(255, 77, 77, 0.4)";
-    } else {
-        // Reset to normal Login behavior
-        authBtn.innerText = "Login / Sign In";
-        authBtn.onclick = openAuthModal;
-        authBtn.style.border = "1.5px solid rgba(157, 135, 255, 0.3)";
-    }
-});
