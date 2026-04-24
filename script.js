@@ -125,4 +125,140 @@ document.querySelectorAll('.nav-links a, .nav-btn').forEach(anchor => {
             target.scrollIntoView({ behavior: 'smooth' });
         }
     });
+});// Toggle Modal
+function openAuthModal() { document.getElementById('authModal').style.display = 'flex'; }
+function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
+
+// Switch between Login and Sign In
+function switchTab(type) {
+    const isLogin = type === 'login';
+    document.getElementById('loginSection').style.display = isLogin ? 'block' : 'none';
+    document.getElementById('signupSection').style.display = isLogin ? 'none' : 'block';
+    document.getElementById('loginTab').classList.toggle('active', isLogin);
+    document.getElementById('signupTab').classList.toggle('active', !isLogin);
+}
+
+// Simulate Login Error
+function handleLogin(e) {
+    e.preventDefault();
+    document.getElementById('errorMsg').style.display = 'block';
+}
+
+// Profile Picture Preview
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        const output = document.getElementById('pfp-display');
+        output.style.backgroundImage = `url(${reader.result})`;
+        output.innerHTML = '';
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+// Force Auth on Contact Form
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    const userIsLoggedIn = false; // Simulated check
+    if (!userIsLoggedIn) {
+        e.preventDefault();
+        alert("Please login or sign in to send a message!");
+        openAuthModal();
+    }
+});function openAuthModal() {
+    console.log("Attempting to open modal...");
+    const modal = document.getElementById('authModal');
+    if (modal) {
+        modal.style.display = 'flex';
+    } else {
+        alert("Error: You are missing the <div id='authModal'> in your HTML!");
+    }
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+}
+// Your specific Soclix Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCWZ_hd1H-rGja2E7EWqXFndNWtJ8z5zMM",
+  authDomain: "soclix-7.firebaseapp.com",
+  projectId: "soclix-7",
+  storageBucket: "soclix-7.firebasestorage.app",
+  messagingSenderId: "707745613226",
+  appId: "1:707745613226:web:a55e0d0c13d7b7cdecd7d3",
+  measurementId: "G-BFTM5XDGKS"
+};
+
+// Initialize Firebase (Compat Version)
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// --- SIGN UP LOGIC (Saves to Firebase) ---
+function handleSignup(event) {
+    event.preventDefault();
+    const email = event.target.querySelector('input[type="email"]').value;
+    const password = event.target.querySelector('input[type="password"]').value;
+
+    auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            alert("Success! Account created for: " + email);
+            closeAuthModal();
+        })
+        .catch((error) => {
+            alert("Error: " + error.message);
+        });
+}
+
+// --- LOGIN LOGIC ---
+function handleLogin(event) {
+    event.preventDefault();
+    const email = document.getElementById('logUser').value;
+    const password = document.getElementById('logPass').value;
+
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+            alert("Welcome back!");
+            closeAuthModal();
+        })
+        .catch((error) => {
+            // Show the red error text we made
+            document.getElementById('errorMsg').style.display = 'block';
+        });
+}// --- GOOGLE SIGN-IN ---
+function loginWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            console.log("Google User:", result.user);
+            alert("Signed in as " + result.user.displayName);
+            closeAuthModal();
+        })
+        .catch((error) => {
+            alert("Google Login Failed: " + error.message);
+        });
+}
+
+// --- APPLE SIGN-IN ---
+function loginWithApple() {
+    const provider = new firebase.auth.OAuthProvider('apple.com');
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            alert("Apple Sign-in Successful!");
+            closeAuthModal();
+        })
+        .catch((error) => {
+            alert("Apple Login Failed: " + error.message);
+        });
+}auth.onAuthStateChanged((user) => {
+    const authBtn = document.querySelector('.auth-trigger-btn');
+    if (user) {
+        // Change button to show their Google/Apple profile pic if available
+        const photo = user.photoURL || 'default-avatar.png'; 
+        authBtn.innerHTML = `<img src="${photo}" style="width:20px; border-radius:50%; margin-right:8px;"> ${user.displayName || 'Account'}`;
+        
+        // Optional: Update the Sign-In box to show their current info
+        if(document.getElementById('pfp-display')) {
+            document.getElementById('pfp-display').style.backgroundImage = `url(${photo})`;
+        }
+    } else {
+        authBtn.innerText = "Login / Sign In";
+    }
 });
