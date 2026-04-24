@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <meta charset="UTF-8">
@@ -12,20 +14,19 @@
     <nav class="capsule-nav" id="mainNav">
     <div class="nav-content">
         <div class="nav-logo-section">
-            <img src="logo.png" alt="Soclix Logo" class="nav-small-logo">
             <span class="nav-brand">SOCLIX</span>
         </div>
-        
         <ul class="nav-links">
             <li><a href="#hero">Home</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#footer">Feedback</a></li>
         </ul>
-
-        <a href="#contact" class="nav-btn">Start Project</a>
+        <div class="nav-actions">
+    <button class="auth-trigger-btn" onclick="openAuthModal()">Login / Sign In</button>
+    <a href="#contact" class="nav-project-btn">Start Project</a>
+</div>
     </div>
 </nav>
-
     <section class="hero">
         <img src="logo.png" class="logo" alt="Soclix Logo">
         <div class="hero-text">
@@ -35,8 +36,8 @@
         </div>
     </section>
 
-    <hr>
-3<section id="services">
+    
+<section id="services">
     <h2 class="underlined-title">OUR SERVICES</h2>
     
     <div class="services-grid top-row">
@@ -66,7 +67,7 @@
     </div>
 </section>
     <section id="contact">
-        <h2 class="section-title">GET IN TOUCH</h2>
+        <h2 class="underlined-title">Get In Touch</h2>
         <div class="contact-container">
             
             <div class="contact-info">
@@ -152,17 +153,56 @@
         <p>&copy; 2026 Soclix. Founded By Mohammad Yehya. All rights reserved.</p>
     </div>
 </footer>
+<div id="authModal" class="auth-overlay">
+    <div class="auth-card">
+        <button class="close-btn" onclick="closeAuthModal()">&times;</button>
+        
+        <div class="auth-header">
+            <span id="loginTab" class="tab active" onclick="switchTab('login')">Login</span>
+            <span id="signupTab" class="tab" onclick="switchTab('signup')">Sign In</span>
+        </div>
+
+        <div id="loginSection">
+            <form class="auth-form" onsubmit="handleLogin(event)">
+                <input type="text" id="logUser" placeholder="Username or Email" required>
+                <input type="password" id="logPass" placeholder="Password" required>
+                <p id="errorMsg" class="error-text">No account found. Sign in to continue.</p>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+        </div>
+
+        <div id="signupSection" style="display: none;">
+            <div class="pfp-container">
+                <label for="pfp-input">
+                    <div class="pfp-preview" id="pfp-display">+</div>
+                </label>
+                <input type="file" id="pfp-input" hidden accept="image/*" onchange="previewImage(event)">
+                <p>Set Profile Picture</p>
+            </div>
+            <form class="auth-form" onsubmit="handleSignup(event)">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Gmail Address" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+        </div>
+
+        <div class="social-divider"><span>OR</span></div>
+        
+       <div class="social-buttons">
+    <button class="social-btn google" onclick="loginWithGoogle()">
+        <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"> Google
+    </button>
+    <button class="social-btn apple" onclick="loginWithApple()">
+        <img src="https://cdn-icons-png.flaticon.com/512/0/747.png"> Apple
+    </button>
+</div>
+</div>
 
     <script src="script.js"></script>
 
 </body>
 </html>
 
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-    
-    <script src="script.js"></script>
-
-
-</body>
 </html>
 
