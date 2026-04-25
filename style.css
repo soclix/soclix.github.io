@@ -911,3 +911,307 @@ body {
     object-fit: cover;
     display: none; /* Only show when logged in */
 }
+.iti { width: 100%; margin-bottom: 15px; }
+.iti__country-list { background: #0b0221; border: 1px solid #9d87ff; color: white; }
+.iti__search { background: #1a0b3c; border-bottom: 1px solid rgba(157, 135, 255, 0.3); padding: 10px; }
+/* This class will be added/removed via JavaScript */
+.capsule-nav.nav-hidden {
+    transform: translateY(-120%); /* Slides it up off the screen */
+    opacity: 0;
+}
+
+/* Ensure your original nav has a transition for smooth movement */
+.capsule-nav {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    /* other existing styles like position: fixed, etc. */
+}
+/* 1. Make the input look normal (No more pink capsule) */
+#phone {
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(157, 135, 255, 0.2) !important;
+    border-radius: 12px !important;
+    padding: 15px 15px 15px 85px !important; /* Space for flag + code */
+    color: white !important;
+}
+
+/* 2. Fix the Search Bar (Matching your dark BG) */
+.iti__search-input {
+    background: #0b0221 !important; /* Matches your dark theme */
+    color: white !important;
+    border: 1px solid #9d87ff !important;
+    padding: 10px !important;
+    margin: 10px !important;
+    width: calc(100% - 20px) !important;
+    outline: none;
+}
+
+/* 3. Dropdown list styling */
+.iti__country-list {
+    background-color: #0b0221 !important;
+    border: 1px solid #9d87ff !important;
+    color: white !important;
+}
+
+.iti__country:hover, .iti__country.iti__highlight {
+    background-color: rgba(157, 135, 255, 0.2) !important;
+}
+/* 1. Reset the container and make the input normal */
+.iti { width: 100%; margin-bottom: 20px; }
+
+#phone {
+    width: 100% !important;
+    padding: 15px 15px 15px 90px !important; /* Fixed padding for dial code */
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(157, 135, 255, 0.2) !important;
+    border-radius: 12px !important;
+    color: white !important;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+/* 2. Style the "91+" area so it matches the background */
+.iti__selected-dial-code {
+    color: white !important;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.iti__selected-flag {
+    background: transparent !important; /* Removes the pink/purple bg */
+    padding-left: 15px !important;
+}
+
+/* 3. The SEARCH BAR (Dark & Proper) */
+.iti__search-input {
+    width: 100% !important;
+    padding: 12px !important;
+    background: #0b0221 !important; /* Your dark theme color */
+    color: white !important;
+    border: 1px solid rgba(157, 135, 255, 0.4) !important;
+    border-radius: 8px !important;
+    margin: 8px auto !important;
+    outline: none;
+}
+
+/* 4. The Dropdown List */
+.iti__country-list {
+    background: #0b0221 !important;
+    border: 1px solid #9d87ff !important;
+    border-radius: 12px;
+    color: white !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.iti__country.iti__highlight {
+    background: rgba(157, 135, 255, 0.2) !important;
+}
+/* --- KILL THE PINK BUTTON STYLE --- */
+.iti__selected-flag {
+    background: transparent !important; /* Removes the pink/purple button */
+    border-radius: 12px 0 0 12px !important;
+    padding-left: 15px !important;
+    border: none !important;
+}
+
+.iti__selected-dial-code {
+    color: #ffffff !important; /* Forces text to be white */
+    font-weight: normal !important;
+    font-size: 1rem !important;
+    margin-left: 8px !important;
+}
+
+/* --- SEARCH BAR DARK THEME --- */
+.iti__search-input {
+    width: 100% !important;
+    padding: 10px !important;
+    background: #0b0221 !important; /* Dark background */
+    color: white !important;
+    border: 1px solid rgba(157, 135, 255, 0.4) !important;
+    border-radius: 8px !important;
+    outline: none !important;
+}
+
+.iti__country-list {
+    background: #0b0221 !important;
+    border: 1px solid #9d87ff !important;
+    color: white !important;
+}
+
+/* --- THE INPUT BOX --- */
+#phone {
+    width: 100% !important;
+    height: 55px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(157, 135, 255, 0.2) !important;
+    border-radius: 12px !important;
+    color: white !important;
+    padding-left: 95px !important;
+}
+/* The base state of your navbar */
+.capsule-nav {
+    position: fixed;
+    top: 20px; /* or whatever your current top is */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.5s ease;
+    z-index: 1000;
+}
+
+/* The state when you are scrolling down (Hidden) */
+.nav-up {
+    transform: translate(-50%, -150%) !important; /* Slips up past the top */
+    opacity: 0 !important;
+    pointer-events: none; /* Prevents clicking while hidden */
+}/* Main container */
+.iti {
+    width: 100%;
+    position: relative;
+}
+
+/* Input field */
+#phone {
+    width: 100% !important;
+    height: 55px;
+    padding-left: 120px !important; /* BIG FIX */
+    padding-right: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(157, 135, 255, 0.2);
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+}
+
+/* Flag + country code container */
+.iti__flag-container {
+    width: 105px; /* fixed space for flag + code */
+}
+
+/* Align flag nicely */
+.iti__selected-flag {
+    padding-left: 12px !important;
+    background: transparent !important;
+}
+
+/* Country code text */
+.iti__selected-dial-code {
+    font-size: 0.95rem;
+    color: white !important;
+}
+#phone {
+    padding-left: 90px !important; /* adjust but NOT too large */
+}
+/* Container */
+.iti {
+    width: 100%;
+    position: relative;
+}
+
+/* Input field */
+#phone {
+    width: 100% !important;
+    height: 55px;
+    padding-left: 120px !important; /* 🔥 KEY FIX */
+    padding-right: 15px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(157,135,255,0.2);
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+}
+
+/* Flag + code container (DO NOT REMOVE) */
+.iti__flag-container {
+    position: absolute;
+    left: 0;
+    height: 100%;
+}
+
+/* Flag styling */
+.iti__selected-flag {
+    padding-left: 12px !important;
+    display: flex;
+    align-items: center;
+}
+
+/* Country code text */
+.iti__selected-dial-code {
+    margin-left: 6px;
+    font-size: 0.95rem;
+    color: white !important;
+}
+/* Error text */
+#email-error, #phone-error {
+  display: none;
+  color: red;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+/* Phone input fix */
+.iti {
+  width: 100%;
+}
+
+#phone {
+  width: 100%;
+  padding-left: 110px !important; /* 🔥 prevents overlap */
+  height: 50px;
+}
+
+/* Thank you popup */
+.thank-you-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.thank-you-card {
+  background: #111;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+}
+/* NAVBAR BASE */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.35s ease;
+  z-index: 1000;
+}
+
+/* HIDDEN STATE */
+.nav-hidden {
+  opacity: 0;
+  transform: translate(-50%, -20px);
+  pointer-events: none;
+}.nav-hidden {
+  opacity: 0;
+  transform: translate(-50%, -30px);
+  backdrop-filter: blur(0px);
+}/* Your base navbar class */
+.capsule-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Keeps it centered */
+    transition: transform 0.4s ease, opacity 0.4s ease !important;
+    z-index: 9999;
+    opacity: 1;
+}
+
+/* The state that triggers when you scroll down */
+.nav-hidden {
+    transform: translate(-50%, -120%) !important; /* Slides it up off-screen */
+    opacity: 0 !important;
+    pointer-events: none;
+}
